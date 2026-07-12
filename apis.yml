@@ -26,6 +26,8 @@ apis:
     description: >-
       The East West Bancorp API provides access to platform services and data for enterprise integration and automation.
 common:
+  - type: DomainSecurity
+    url: security/east-west-bancorp-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/east-west-bank
   - type: Website
