@@ -1,0 +1,151 @@
+generated: '2026-09-14'
+method: probed
+source: >-
+  Direct HTTP probes of every host this record knows: the registrable domain and www,
+  the apis[].baseURL host, the API gateway host named on the TLS certificate served at
+  developer.eastwestbank.com, the Bridge Open Banking developer-portal host, and the
+  Okta authorization server the portal's own Authorization API page names as the token
+  endpoint.
+note: >-
+  NOTHING WAS FOUND. Every named /.well-known/ path returned 404 on every host probed,
+  and the one 200 (eastwestbancorp.com/.well-known/security.txt) is a parked-domain
+  lander that answers 200 with an HTML redirect shell for every path — a soft-404, not a
+  document. No WellKnown or SecurityTxt pointer is emitted, because a recorded absence is
+  not a served surface. eastwestbancorp.com is NOT East West Bancorp's corporate site; the
+  company operates from eastwestbank.com.
+hosts:
+- host: www.eastwestbank.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+- host: api.eastwestbank.com
+  note: >-
+    First-party host (DigiCert certificate, O=East West Bank, CN=api.eastwestbank.com).
+    The root returns 403 Forbidden from an nginx edge with HSTS; the surface is
+    authentication-gated rather than absent.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+- host: apigateway.eastwestbank.com
+  note: >-
+    The API gateway itself — an Azure API Management runtime (every miss answers
+    `{"statusCode":404,"message":"Resource not found"}`), reached at 52.183.84.200, the
+    same address developer.eastwestbank.com resolves to and whose certificate names this
+    host.
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+- host: apiportal.eastwestbank.com
+  note: >-
+    The Bridge Open Banking developer portal (Azure API Management developer portal,
+    fronted by Azure Front Door). /sitemap.xml returns 200 and is the only machine-readable
+    discovery document served anywhere on this estate.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+  - path: /openapi.json
+    status: 404
+    file: null
+  - path: /swagger.json
+    status: 404
+    file: null
+- host: ewbpoc.okta.com
+  note: >-
+    Third-party authorization server, named by East West Bank's own Authorization API page
+    as the token endpoint for its client_credentials flow. Okta publishes authorization
+    server metadata anonymously when the server exists; both metadata paths return Okta's
+    branded "Page Not Found", so the authorization server id the portal documents
+    (ausdaetdg9zY8EZuI2p6) no longer resolves in that org.
+  documents:
+  - path: /oauth2/ausdaetdg9zY8EZuI2p6/.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /oauth2/ausdaetdg9zY8EZuI2p6/.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+- host: eastwestbancorp.com
+  note: >-
+    Parked lander, not a company property — every path returns 200 with an HTML shell that
+    JavaScript-redirects to /lander. Recorded so a future run does not mistake the 200 for
+    a served document.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    soft_404: true

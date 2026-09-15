@@ -1,0 +1,80 @@
+generated: '2026-09-14'
+method: searched
+source: https://apiportal.eastwestbank.com/AuthorizationAPI
+note: >-
+  Conformance assertions for the Bridge Open Banking program operated by East West Bank, the
+  banking subsidiary of East West Bancorp. There is no public OpenAPI, so nothing is derived
+  from a spec; each assertion cites a page the provider serves anonymously. conforms:false
+  means "no public evidence", never "known non-conformant". No domain standard is asserted:
+  the portal is branded "Open Banking" but the provider makes no FDX, Berlin Group, UK Open
+  Banking, ISO 20022 or CFPB 1033 claim anywhere on its anonymous surface, and this pipeline
+  does not fill a reward-only slot from a product name.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    https://apiportal.eastwestbank.com/AuthorizationAPI — "This protocol supports Industry
+    Standard OAuth 2.0 Authorization Framework"; documents the client_credentials
+    (two-legged) grant, a form-encoded POST to the identity provider's /token endpoint, and a
+    Bearer access token with expires_in on every protected call. The portal FAQ repeats it:
+    "We use a standard OAuth 2.0 scheme for authorization."
+- id: rfc6750-bearer
+  conforms: true
+  evidence: >-
+    https://apiportal.eastwestbank.com/AuthorizationAPI — token response carries
+    "token_type":"Bearer" and the documented request header is `Authorization: Bearer <token>`.
+- id: idempotency
+  conforms: true
+  evidence: >-
+    https://apiportal.eastwestbank.com/faqs — a client-generated GUID `requestId` on account
+    opening and funds transfer requests makes them idempotent and safe to resubmit after a
+    timeout or server error. Scoped to those operations, not the whole mutating surface; see
+    conventions/east-west-bancorp-conventions.yml.
+- id: oidc
+  conforms: false
+  evidence: >-
+    Only the client_credentials grant is documented — a machine-to-machine flow with no end
+    user, no id_token and no userinfo. Okta is the identity provider, but the authorization
+    server metadata the portal names (ewbpoc.okta.com, server id ausdaetdg9zY8EZuI2p6)
+    returned HTTP 404 when probed 2026-09-14, so no OIDC discovery document could be read.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    No error reference is published anonymously and application/problem+json is never
+    mentioned. The one documented status, 401, is described in prose in the portal FAQ.
+- id: mtls
+  conforms: true
+  evidence: >-
+    https://apiportal.eastwestbank.com/faqs — "you will need a certificate for connectivity
+    to the sandbox and production environments, although no certificate is needed for access
+    to the Bridge Open Banking portal." Client-certificate transport security is required on
+    both live tiers; the provider does not cite RFC 8705 by name.
+- id: fdx
+  conforms: false
+  evidence: >-
+    No Financial Data Exchange participation, FDX API version or FDX certification is
+    documented on any anonymously reachable East West Bank page.
+- id: iso20022
+  conforms: false
+  evidence: >-
+    Wire notifications carry Originator/Sending/Beneficiary Country Code fields (release
+    1.001), which are wire-payment concepts, but the provider names no ISO 20022 message type
+    and publishes no message schema.
+- id: psd2
+  conforms: false
+  evidence: US-chartered commercial bank; PSD2 does not apply and no claim is made.
+- id: pagination
+  conforms: false
+  evidence: no public spec or reference page states a pagination scheme
+compliance_programs:
+  note: >-
+    Recorded for completeness. These are banking/regulatory facts published on the provider's
+    own pages, not API security certifications. No SOC 2, ISO 27001, PCI DSS or trust-center
+    page was found for East West Bank or East West Bancorp — see
+    security/east-west-bancorp-trust-center.yml (absent) — so no Compliance pointer is
+    emitted in apis.yml.
+  items:
+  - name: Member FDIC
+    evidence: https://apiportal.eastwestbank.com/ (portal footer, FDIC Equal Housing logo)
+  - name: NMLSR ID 469761
+    evidence: https://apiportal.eastwestbank.com/ (portal footer)

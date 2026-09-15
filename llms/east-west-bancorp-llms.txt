@@ -1,0 +1,102 @@
+# East West Bancorp
+
+> East West Bancorp, Inc. (NASDAQ: EWBC) is the Pasadena, California bank holding company for
+> East West Bank, a California state-chartered commercial bank and Member FDIC institution
+> (NMLSR ID 469761) specializing in cross-border U.S.-Greater China commercial banking and
+> Global Transaction Services (GTS). The holding company itself publishes no API. The group's
+> entire developer surface is East West Bank's first-party "Bridge Open Banking" program at
+> apiportal.eastwestbank.com — commercial banking APIs to open and manage master/sub accounts,
+> retrieve balances and transactions, transfer funds and retrieve statements, plus wire push
+> notifications. Authorization is OAuth 2.0 client_credentials against an Okta token endpoint;
+> a client certificate is required for sandbox and production. Portal sign-up is free and
+> self-serve, but the API reference, product library and every callable environment are gated
+> behind sign-in and GTS sales onboarding, so no OpenAPI, Swagger or AsyncAPI document is
+> publicly downloadable. The newest dated release on the public release-notes page is
+> 2021-07-28.
+
+## APIs
+
+- [East West Bank Bridge Open Banking API](https://apiportal.eastwestbank.com/): Commercial
+  banking API program operated by East West Bancorp's banking subsidiary for GTS clients —
+  open and manage sub accounts (with ACH transaction permissions and Excess/Deficit/TwoWay
+  sweeps against a master account), retrieve account and transaction information, transfer
+  funds, retrieve statements, and receive incoming and outgoing wire push notifications.
+  Gateway is an Azure API Management runtime; specs are not published anonymously.
+
+## Docs
+
+- [Developer portal (Bridge Open Banking)](https://apiportal.eastwestbank.com/): Program home.
+- [How It Works](https://apiportal.eastwestbank.com/how-it-works): Six-step onboarding —
+  explore APIs, sign up, try APIs on the portal, create an application, test your code in the
+  sandbox, go live in production.
+- [All APIs](https://apiportal.eastwestbank.com/apis): API list. Renders after sign-in; the
+  anonymous page says "More APIs will be coming soon."
+- [Products](https://apiportal.eastwestbank.com/products): Product library. Renders after
+  sign-in.
+- [Authorization API](https://apiportal.eastwestbank.com/AuthorizationAPI): The one reference
+  page served anonymously — the full OAuth 2.0 client_credentials token exchange.
+- [FAQs](https://apiportal.eastwestbank.com/faqs): Authorization, base-64 credential encoding,
+  sandbox test data, the requestId idempotency rule, and 401 troubleshooting.
+- [Release Notes](https://apiportal.eastwestbank.com/release-notes): Dated platform releases.
+- [Support](https://apiportal.eastwestbank.com/support): Developer support.
+
+## Auth
+
+- OAuth 2.0, two-legged (client_credentials). Create an application in the portal to be issued
+  a ClientID and ClientSecret; POST them form-encoded with `grant_type=client_credentials` to
+  the token endpoint the provider documents,
+  `https://ewbpoc.okta.com/oauth2/ausdaetdg9zY8EZuI2p6/v1/token` (Okta). The response carries
+  `access_token`, `token_type: Bearer` and `expires_in: 86400`. Send
+  `Authorization: Bearer <access_token>` on every protected endpoint. The FAQ additionally
+  documents base-64 encoding ClientID:ClientSecret with a `Basic` prefix on the token call.
+  A client certificate, issued by GTS during onboarding, is required for sandbox and
+  production connectivity but not for portal access.
+- 401 causes the provider names: credential/application mismatch, malformed base-64 encoding,
+  missing `Basic` prefix, invalidated or expired access token.
+
+## Idempotency
+
+- Account opening and funds transfer requests take a client-generated GUID `requestId`, which
+  makes the request idempotent. Reuse the same `requestId` when resubmitting after a timeout
+  or server error and the account or transfer will not be duplicated; a replay of a request
+  that already succeeded returns success without duplicating. Scoped to those operations —
+  the provider does not claim it across the whole write surface. No reversal or cancellation
+  operation, and no reversal window, is documented anywhere on the public surface.
+
+## Sandbox
+
+- Bank-supplied test data including live test accounts. Open and manage test accounts, obtain
+  account and transaction information, transfer funds, retrieve statements. In-browser "try
+  it" execution on the documentation pages after sign-in. Sandbox and production both require
+  a client certificate and a GTS sales conversation; no test values are published anonymously.
+
+## Pricing
+
+- No published price sheet. Portal access is free; sandbox and production pricing is quoted by
+  a GTS sales consultant. No published rate limits, quotas or rate-limit response headers.
+
+## Onboarding
+
+- [Sign Up](https://apiportal.eastwestbank.com/signup): Free; an email invitation follows and
+  the activation link expires in seven days.
+- [Sign In](https://apiportal.eastwestbank.com/signin)
+- Support: ewbb@eastwestbank.com, 1-888-761-3967 (M-F 6am-7pm PT).
+
+## Legal
+
+- [Terms & Conditions](https://apiportal.eastwestbank.com/terms-and-conditions)
+- [Privacy Policy](https://apiportal.eastwestbank.com/privacy-policy)
+
+## Not published
+
+- No OpenAPI, Swagger, AsyncAPI, GraphQL schema, gRPC/Protobuf or WSDL contract at any host.
+- No MCP server, no A2A agent card, no llms.txt, no /.well-known/ document on any host
+  (www.eastwestbank.com, api.eastwestbank.com, apigateway.eastwestbank.com,
+  apiportal.eastwestbank.com all return 404 on every named path).
+- No client SDK on npm, PyPI or GitHub; no CLI; no Postman collection; no status page
+  (status.eastwestbank.com does not resolve); no deprecation policy; no SLA; no trust center
+  or published security certifications; no security.txt and no vulnerability disclosure page.
+
+---
+Generated by API Evangelist on 2026-09-14 from this repository's apis.yml and artifacts.
+This is an independent third-party profile. Source: https://github.com/api-evangelist/east-west-bancorp

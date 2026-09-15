@@ -1,0 +1,63 @@
+generated: '2026-09-14'
+method: searched
+source: https://apiportal.eastwestbank.com/release-notes
+note: >-
+  Lifecycle posture for the Bridge Open Banking program run by East West Bank, East West
+  Bancorp's banking subsidiary. Searched the developer portal (home, how-it-works, FAQs,
+  support, release notes, sitemap) and DNS for the surfaces this artifact normally carries.
+  Only the release-notes page exists. No status page, no deprecation policy, no SLA and no
+  published support-window commitment were found, so no StatusPage and no Deprecation
+  pointer is emitted in apis.yml — an absence recorded is not a surface served.
+versioning:
+  scheme: dated platform releases with a numeric release identifier
+  in_url: false
+  in_header: false
+  current_release: '1.001'
+  current_release_date: '2021-06-18'
+  note: >-
+    No version segment appears in any published path or header, because no base path is
+    published anonymously. Versioning is visible only as release identifiers on the release
+    notes page.
+change_log:
+  published: true
+  url: https://apiportal.eastwestbank.com/release-notes
+  latest_entry: '2021-07-28'
+  detail: changelog/east-west-bancorp-changelog.yml
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  evidence: >-
+    Probed 2026-09-14 — no deprecation, sunset, retirement or versioning policy page exists on
+    apiportal.eastwestbank.com (checked /how-it-works, /faqs, /support, /release-notes,
+    /terms-and-conditions and the full /sitemap.xml route list). No published operation is
+    marked deprecated because no operation list is published.
+status_page:
+  published: false
+  url: null
+  evidence: >-
+    status.eastwestbank.com does not resolve (no DNS record, probed 2026-09-14), and no
+    status, uptime or incident-history link appears anywhere on the developer portal or in
+    its sitemap.
+sla:
+  published: false
+  evidence: >-
+    No SLA, uptime target or credit schedule is published anonymously; commercial terms are
+    handled by a GTS sales consultant during onboarding.
+support:
+  channels:
+  - type: portal
+    url: https://apiportal.eastwestbank.com/support
+  - type: email
+    value: ewbb@eastwestbank.com
+  - type: phone
+    value: 1-888-761-3967 (M-F 6am-7pm PT)
+  source: https://apiportal.eastwestbank.com/how-it-works
+maturity:
+  stage: early-stage, dormant on the public surface
+  evidence: >-
+    The API list and product library both say "More APIs will be coming soon"; the newest
+    dated release is 2021-07-28; and the portal footer copyright reads 2020-2021. Five years
+    of no public release is the finding, not a judgement about internal activity.

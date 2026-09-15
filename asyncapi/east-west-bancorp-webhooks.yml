@@ -1,0 +1,55 @@
+generated: '2026-09-14'
+method: searched
+source: https://apiportal.eastwestbank.com/release-notes
+docs: https://apiportal.eastwestbank.com/release-notes
+note: >-
+  East West Bank publishes NO AsyncAPI document and no anonymously reachable event catalogue.
+  What it does publish, in its own dated release notes, is confirmation that the Bridge Open
+  Banking program operates a wire push-notification surface and that the payload was changed
+  in a named release. That is a real event surface and it is recorded here at exactly the
+  detail the provider states — direction and three added fields — and no further. Field
+  types, delivery mechanism, retry policy, signing and subscription management are NOT
+  documented anonymously and are recorded as unknown, not inferred.
+event_surface:
+  present: true
+  kind: push notifications
+  spec_published: false
+  asyncapi: false
+  catalogue_public: false
+  discovery: >-
+    Named only in the 2021-06-18 release note; the notification catalogue itself sits behind
+    portal sign-in with the rest of the API reference.
+transports:
+- name: unknown
+  note: >-
+    The provider calls these "push notifications" without naming HTTP callbacks, a message
+    queue, or a file/report channel. Not classified here.
+notifications:
+- name: Incoming wire notification
+  product_codes:
+  - SAM
+  - CAM
+  direction: incoming
+  fields_documented:
+  - Originator Country Code
+  - Sending Country Code
+  - Beneficiary Country Code
+  added_in_release: '1.001'
+  added_on: '2021-06-18'
+  note: >-
+    Country-code fields were ADDED to this notification in Release 1.001. The full payload is
+    not published anonymously; only these three fields are named by the provider.
+- name: Outgoing wire notification
+  product_codes:
+  - SAM
+  - CAM
+  direction: outgoing
+  fields_documented:
+  - Originator Country Code
+  - Sending Country Code
+  - Beneficiary Country Code
+  added_in_release: '1.001'
+  added_on: '2021-06-18'
+subscription_management: unknown
+signing: unknown
+retry_policy: unknown

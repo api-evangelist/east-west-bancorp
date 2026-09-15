@@ -1,0 +1,41 @@
+generated: '2026-09-14'
+method: searched
+source: https://apiportal.eastwestbank.com/faqs
+docs: https://apiportal.eastwestbank.com/how-it-works
+note: >-
+  The Bridge Open Banking program run by East West Bank, East West Bancorp's banking
+  subsidiary, publishes a sandbox. No concrete test values — account numbers, test
+  credentials, magic identifiers — appear anywhere on the anonymous surface; they are
+  provisioned per application after sign-in and sales onboarding, so none are reproduced
+  here. This captures the sandbox model the provider documents, verbatim where quoted.
+sandbox:
+  available: true
+  self_serve: false
+  gate: >-
+    Portal sign-up is free and self-serve, but sandbox and production access require contact
+    with an East West Bank GTS sales consultant, who supplies pricing, the onboarding
+    documents, the client certificate and the access credentials.
+  test_vs_live: >-
+    Three tiers, not two: the anonymous/registered portal (in-browser "try it" against
+    documentation prompts, no certificate needed), a sandbox connected to a live banking
+    environment with bank-supplied test accounts and live transfers, and production.
+  test_data: >-
+    "We supply test data, including live test accounts, in our sandbox environment." Test
+    accounts and test payments are provisioned to the developer's application rather than
+    published.
+  in_browser_testing: >-
+    "Our documentation pages allow in-browser testing on the Bridge Open Banking portal.
+    Simply pre-populate the data using the documentation prompts and insert missing fields
+    from your application or access token information."
+  client_certificate_required: true
+  client_certificate_note: >-
+    A certificate is required for connectivity to both sandbox and production; no certificate
+    is needed for portal access. Certificates are issued by GTS during onboarding.
+  capabilities:
+  - open and manage test accounts
+  - obtain information on accounts and transactions
+  - transfer funds
+  - retrieve statements
+  test_values: none published anonymously (provisioned per application after onboarding)
+  test_key_prefixes: none published
+  time_simulation: not documented

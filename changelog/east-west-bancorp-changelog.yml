@@ -1,0 +1,64 @@
+generated: '2026-09-14'
+method: searched
+source: https://apiportal.eastwestbank.com/release-notes
+docs: https://apiportal.eastwestbank.com/release-notes
+note: >-
+  The Bridge Open Banking portal publishes a dated Release Notes page anonymously. The page
+  offers three release dates in a selector — July 28th 2021, July 9th 2021 and June 18th 2021
+  — and server-renders only the earliest (Release 1.001). The two later releases are listed
+  by date but their bodies are loaded client-side and were not readable anonymously, so they
+  are recorded as dates with no content rather than summarised from guesswork. There is also
+  an /api-changelog route in the portal sitemap; it renders an empty shell with no entries.
+scheme: dated platform releases with a numeric release identifier (e.g. "Release 1.001")
+current_version: '1.001'
+current_version_date: '2021-06-18'
+latest_entry_date: '2021-07-28'
+staleness_note: >-
+  The most recent dated release on the page is 2021-07-28, more than five years before this
+  profile was written. Nothing on the anonymous surface indicates a release since. The portal
+  footer copyright reads 2020 on most pages and 2021 on the Support section pages, which is
+  consistent with a program that has not shipped a public update in some time.
+entries:
+- version: '1.001'
+  date: '2021-06-18'
+  title: Bridge Open Banking Release 1.001
+  breaking: false
+  additions:
+  - >-
+    Optional "aCHTransactionsAllowed" field added to the Open Sub Account and Update Sub
+    Account request and response, controlling which ACH transactions may post to the sub
+    account. Permissible values "All", "Debits only", "Credits only", "None"; default "All".
+  - >-
+    Third sweepType "TwoWay" added to the Open and Update Sub Account APIs, linking the sub
+    account to the master account by a two-way collection/disbursement sweep. Default
+    sweepType remains "Excess" when not specified.
+  - >-
+    Optional "pegBalance" field supported on all three sweep types ("Excess", "Deficit",
+    "TwoWay") — the maintained balance in the sub account, defaulting to $0. Using pegBalance
+    requires passing sweepType in the request.
+  - >-
+    Open Sub Account and Master/Sub Account Status Inquiry responses now return the Master
+    Account Number, so a client can resolve which master account a sub account belongs to.
+  changes:
+  - >-
+    SAM and CAM wire push notifications updated to add country codes to incoming and outgoing
+    wire notifications — Originator Country Code, Sending Country Code, Beneficiary Country
+    Code.
+  fixes:
+  - >-
+    Error messages returned by certain APIs incorrectly referred to the requestID as a
+    transactionID; the nomenclature was corrected.
+- version: null
+  date: '2021-07-09'
+  title: Release dated 2021-07-09
+  breaking: unknown
+  note: >-
+    Listed on the Release Notes date selector; body not server-rendered and not readable
+    anonymously. Recorded as a dated release with no summary rather than invented.
+- version: null
+  date: '2021-07-28'
+  title: Release dated 2021-07-28
+  breaking: unknown
+  note: >-
+    Listed on the Release Notes date selector; body not server-rendered and not readable
+    anonymously. Recorded as a dated release with no summary rather than invented.

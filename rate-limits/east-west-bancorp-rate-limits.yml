@@ -4,33 +4,42 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: East West Bancorp
 providerId: east-west-bancorp
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
+generated: '2026-09-14'
+method: searched
+modified: '2026-09-14'
 reconciled: false
+source: https://apiportal.eastwestbank.com/faqs
 tags:
   - Rate Limiting
   - Banking
   - Financial Services
-description: East West Bancorp does not publish public API rate limits. Limits, where they exist, are
-  applied at the customer-integration gateway and governed by treasury-services agreements.
-notes: No public rate-limit numbers exist. Confirm with the bank's commercial integrations contact.
+description: >-
+  East West Bancorp publishes no API of its own; the group's API surface is the Bridge Open
+  Banking program run by its banking subsidiary, East West Bank. Searched that program's
+  entire anonymous surface on 2026-09-14 — the developer portal home, All APIs, Products,
+  How It Works, FAQs, Support, Release Notes, Authorization API page and the full
+  /sitemap.xml route list — and found no published rate limit, quota, burst allowance or
+  throttling policy, and no documented rate-limit response headers. This replaces an earlier
+  bulk-sweep artifact that asserted a 429/503 response-code posture nobody had verified;
+  those unverified codes have been removed.
+notes: >-
+  An honest zero. Limits, if any exist, are set per customer during Global Transaction
+  Services onboarding alongside pricing and the client certificate, and are not public.
 sources:
-  - https://www.eastwestbank.com
-responseCodes:
-  throttled: 429
-  serviceUnavailable: 503
-limits:
-  - name: Commercial banking integration
-    scope: contract
-    metric: varies
-    limit: contact relationship manager
+  - https://apiportal.eastwestbank.com/faqs
+  - https://apiportal.eastwestbank.com/how-it-works
+  - https://apiportal.eastwestbank.com/support
+  - https://apiportal.eastwestbank.com/AuthorizationAPI
+limit_count: 0
+limits: []
+headers: []
+responseCodes: {}
 policies:
-  - name: Backoff
-    description: Implement exponential backoff with jitter; honor Retry-After when present.
   - name: Negotiated thresholds
-    description: Per-customer thresholds set by the master services agreement.
+    description: >-
+      Any throughput thresholds are believed to be set in the GTS commercial agreement rather
+      than published; the provider directs all sandbox and production access questions to a
+      GTS sales consultant. Not confirmed by the provider.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

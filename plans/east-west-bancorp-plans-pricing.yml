@@ -4,41 +4,61 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: East West Bancorp
 providerId: east-west-bancorp
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
+generated: '2026-09-14'
+method: searched
+modified: '2026-09-14'
 reconciled: false
+source: https://apiportal.eastwestbank.com/faqs
 tags:
   - Banking
   - Financial Services
-description: East West Bancorp is the holding company for East West Bank, a US commercial bank. The
-  bank does not publish a public developer portal or API price sheet; treasury-management and commercial-banking
-  API integrations are arranged through relationship managers.
-notes: No public API pricing has been confirmed. Replace with provider-confirmed values once a published
-  developer portal exists.
+description: >-
+  East West Bancorp publishes no API price sheet. Its banking subsidiary, East West Bank,
+  runs the Bridge Open Banking developer program, and that program's FAQ states the pricing
+  posture explicitly: "There are no fees to access the Bridge Open Banking portal. If you
+  wish to move to our sandbox and production environments, please contact your GTS sales
+  consultant for pricing and next steps." The portal itself is free; everything callable is
+  quoted by a Global Transaction Services sales consultant. There are therefore no published
+  tiers, no published quotas and no published overage rates.
+notes: >-
+  plan_count is 0 on purpose — this is a sales-quoted enterprise program, not an omission.
+  The free-portal tier below is recorded because the provider states it, but it grants
+  documentation and in-browser "try it" access only, not a callable environment.
 sources:
-  - https://www.eastwestbank.com
-plans:
-  - id: east-west-bancorp-commercial
-    name: Commercial Banking Integration
-    type: enterprise
-    description: API access believed to be limited to commercial / treasury-services customers; pricing
-      per relationship.
-    entries:
-      - label: Negotiated rate
-        name: enterprise_custom
-        type: subscription
-        metric: contract
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        unit: 1
-        price: contact relationship manager
-        userMultiplied: false
-    elements:
-      - name: Treasury management connectivity
-      - name: Custom integration support
+  - https://apiportal.eastwestbank.com/faqs
+  - https://apiportal.eastwestbank.com/how-it-works
+plan_count: 0
+published_pricing: false
+pricing_model: sales-quoted (contact a GTS sales consultant)
+access_tiers:
+  - id: portal
+    name: Bridge Open Banking portal access
+    price: 0
+    currency: USD
+    billing_period: none
+    gate: free self-serve sign-up (email invitation, link expires in seven days)
+    includes:
+      - API and product documentation
+      - in-browser "try it" calls against documentation prompts
+    excludes:
+      - sandbox connectivity
+      - production connectivity
+    evidence: >-
+      "There are no fees to access the Bridge Open Banking portal." —
+      https://apiportal.eastwestbank.com/faqs
+  - id: sandbox-production
+    name: Sandbox and production access
+    price: null
+    currency: USD
+    billing_period: unknown
+    gate: >-
+      Contact an East West Bank GTS sales consultant; the consultant supplies pricing, the
+      onboarding documents, the client certificate and the access credentials.
+    evidence: >-
+      "If you wish to move to our sandbox and production environments, please contact your
+      GTS sales consultant for pricing and next steps." —
+      https://apiportal.eastwestbank.com/faqs
+plans: []
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

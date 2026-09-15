@@ -29,38 +29,148 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/east-west-
 tags:
   - Banking
   - Financial-Services
+  - Commercial-Banking
+  - Treasury-Management
+  - Open-Banking
+  - Payments
+  - Cross-Border
+  - United-States
 tags_raw:
   - Banking
   - Financial Services
+  - Commercial Banking
+  - Treasury Management
+  - Open Banking
+  - Payments
+  - Cross-Border
+  - United States
 description: >-
-  East West Bancorp is a major US corporation and Fortune 1000 company. The East West Bancorp API provides programmatic access to its platform services, data, and integrations for enterprise customers and partners.
+  East West Bancorp, Inc. (NASDAQ: EWBC) is the Pasadena, California bank holding company for
+  East West Bank, a California state-chartered commercial bank and Member FDIC institution
+  (NMLSR ID 469761) that specializes in cross-border U.S.-Greater China commercial banking and
+  Global Transaction Services. The holding company publishes no API of its own; the group's
+  entire developer surface is East West Bank's first-party "Bridge Open Banking" program at
+  apiportal.eastwestbank.com, which documents APIs to open and manage master and sub accounts
+  (with ACH transaction permissions and Excess, Deficit or TwoWay sweeps), retrieve balances,
+  transactions and statements, transfer funds, and receive incoming and outgoing wire push
+  notifications. Authorization is OAuth 2.0 client_credentials against an Okta token endpoint
+  with a Bearer token, account-opening and funds-transfer requests are made idempotent by a
+  client-generated GUID requestId, and a client certificate is required for sandbox and
+  production connectivity. Portal sign-up is free and self-serve, but the API list, product
+  library and every callable environment sit behind sign-in and Global Transaction Services
+  sales onboarding, so no OpenAPI, Swagger or AsyncAPI document is publicly downloadable.
 created: '2026-04-19'
-modified: '2026-04-19'
+modified: '2026-09-14'
 specificationVersion: '0.23'
 apis:
   - aid: east-west-bancorp:east-west-bancorp-api
-    name: East West Bancorp API
+    name: East West Bank Bridge Open Banking API
     tags:
       - Banking
       - Financial-Services
+      - Accounts
+      - Balances
+      - Payments
+      - Transfers
     tags_raw:
       - Banking
       - Financial Services
+      - Accounts
+      - Balances
+      - Payments
+      - Transfers
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.eastwestbank.com
-    humanURL: https://developer.eastwestbank.com
+    humanURL: https://apiportal.eastwestbank.com/
     properties:
-      - url: https://developer.eastwestbank.com/docs
+      - url: https://apiportal.eastwestbank.com/how-it-works
         type: Documentation
+      - url: https://apiportal.eastwestbank.com/apis
+        type: APIReference
+      - url: https://apiportal.eastwestbank.com/AuthorizationAPI
+        type: Authentication
+      - url: https://apiportal.eastwestbank.com/faqs
+        type: HelpCenter
     description: >-
-      The East West Bancorp API provides access to platform services and data for enterprise integration and automation.
+      East West Bancorp's API surface is delivered by its banking subsidiary, East West Bank,
+      through the Bridge Open Banking developer program for Global Transaction Services
+      clients. Documented capabilities open and manage master and sub accounts — including an
+      aCHTransactionsAllowed permission, Excess, Deficit and TwoWay sweeps and a pegBalance —
+      retrieve account, transaction and statement information, transfer funds, and deliver
+      incoming and outgoing wire push notifications carrying originator, sending and
+      beneficiary country codes. Authorization is two-legged OAuth 2.0 (client_credentials)
+      against an Okta token endpoint, returning a Bearer token; account opening and funds
+      transfer take a client-generated GUID requestId that makes them safely replayable. The
+      gateway is an Azure API Management runtime on East West Bank's own infrastructure. The
+      API list, product library and reference render only after portal sign-in, and sandbox
+      and production require a client certificate plus a GTS sales conversation, so no
+      machine-readable contract is publicly downloadable.
 common:
+  - type: Signup
+    url: https://apiportal.eastwestbank.com/signup
   - type: DomainSecurity
     url: security/east-west-bancorp-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/east-west-bank
   - type: Website
     url: https://www.eastwestbank.com
+  - type: DeveloperPortal
+    url: https://apiportal.eastwestbank.com/
+  - type: Documentation
+    url: https://apiportal.eastwestbank.com/how-it-works
+  - type: APIReference
+    url: https://apiportal.eastwestbank.com/apis
+  - type: GettingStarted
+    url: https://apiportal.eastwestbank.com/how-it-works
+  - type: Support
+    url: https://apiportal.eastwestbank.com/support
+  - type: HelpCenter
+    url: https://apiportal.eastwestbank.com/faqs
+  - type: SignUp
+    url: https://apiportal.eastwestbank.com/signup
+  - type: Login
+    url: https://apiportal.eastwestbank.com/signin
+  - type: TermsOfService
+    url: https://apiportal.eastwestbank.com/terms-and-conditions
+  - type: PrivacyPolicy
+    url: https://apiportal.eastwestbank.com/privacy-policy
+  - type: Blog
+    url: https://www.eastwestbank.com/ReachFurther
+  - type: GitHubOrganization
+    url: https://github.com/EastWestBank
+  - type: ReleaseNotes
+    url: https://apiportal.eastwestbank.com/release-notes
+  - type: ChangeLog
+    url: changelog/east-west-bancorp-changelog.yml
+  - type: Authentication
+    url: authentication/east-west-bancorp-authentication.yml
+  - type: Conventions
+    url: conventions/east-west-bancorp-conventions.yml
+  - type: Idempotency
+    url: conventions/east-west-bancorp-conventions.yml
+  - type: Conformance
+    url: conformance/east-west-bancorp-conformance.yml
+  - type: Sandbox
+    url: sandbox/east-west-bancorp-sandbox.yml
+  - type: Lifecycle
+    url: lifecycle/east-west-bancorp-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/east-west-bancorp-webhooks.yml
+  - type: LLMsTxt
+    url: llms/east-west-bancorp-llms.txt
+  - type: Packages
+    url: packages/east-west-bancorp-packages.yml
+  - type: Plans
+    url: plans/east-west-bancorp-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/east-west-bancorp-rate-limits.yml
+  - type: FinOps
+    url: finops/east-west-bancorp-finops.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-14'
+  status: enriched
+  artifacts_added: 10
+  pass: local-v3

@@ -1,0 +1,111 @@
+generated: '2026-09-14'
+method: searched
+source: https://apiportal.eastwestbank.com/faqs
+docs: https://apiportal.eastwestbank.com/faqs
+note: >-
+  Cross-cutting runtime semantics for the Bridge Open Banking program operated by East West
+  Bank, the banking subsidiary of East West Bancorp. There is no public OpenAPI, so nothing
+  here is derived from a spec — every field below is transcribed from a page the provider
+  serves anonymously, and anything the provider does not document is recorded as unknown
+  rather than assumed.
+auth:
+  style: OAuth 2.0 client_credentials; Bearer access token on every protected endpoint
+  detail: authentication/east-west-bancorp-authentication.yml
+idempotency:
+  supported: true
+  coverage: partial
+  mechanism: request-body parameter
+  parameter: requestId
+  parameter_in: body
+  value_format: GUID (Globally Unique Identifier), client-generated per request
+  scope:
+  - account opening
+  - funds transfer
+  semantics: >-
+    "Each API account opening or funds transfer request should contain a 'requestId'
+    parameter, which is a 'Globally Unique Identifier' (GUID) assigned to the request to make
+    it idempotent. An API request may be resubmitted if the original request resulted in a
+    timeout or server error. In this situation, it is important to reuse the same 'requestId'
+    to ensure that the account or funds transfer is not duplicated. If the original request
+    succeeded despite an initial error response from the API, the second or later requests
+    will note a successful response and will not duplicate the requested account or funds
+    transfer." — East West Bank Bridge Open Banking FAQ, verbatim.
+  retention: not documented
+  replay_response: >-
+    A replay of a request that already succeeded returns a successful response and does not
+    duplicate the account or transfer. The provider does not document a replayed-request
+    marker header or a stored-response window.
+  coverage_rationale: >-
+    partial, not full. The mechanism is named for two operations — account opening and funds
+    transfer — rather than declared across the mutating surface, and the full operation list
+    is behind portal sign-in so the denominator cannot be measured anonymously. Recording
+    this as full would credit a bank-wide guarantee the provider has not made.
+  source: https://apiportal.eastwestbank.com/faqs
+reversibility:
+  grade: none
+  status: undocumented
+  na: false
+  write_surface:
+  - open sub account
+  - update sub account
+  - funds transfer / sweep
+  reversal_operations: []
+  window: null
+  note: >-
+    The API has a real write surface (account opening, sub-account update, funds transfer,
+    master/sub sweeps) and the provider documents no cancel, reverse, void or recall
+    operation and no window on any of the anonymously reachable pages. The June 2021 release
+    notes describe sweep types and an ACH transaction-permission field, not a reversal path.
+    No window is asserted here, because a window this pipeline did not read from the docs
+    would be a number an agent could act on and lose money by.
+  source: https://apiportal.eastwestbank.com/release-notes
+dry_run_mode:
+  supported: unknown
+  note: >-
+    Not a dry run, but adjacent and real: the portal documentation pages offer in-browser
+    "try it" execution after sign-in, and a separate sandbox provisions live test accounts
+    where transfers and account opening can be exercised against the bank. See
+    sandbox/east-west-bancorp-sandbox.yml.
+pagination:
+  style: unknown
+  note: no public spec or reference page states a pagination scheme
+field_expansion:
+  supported: unknown
+metadata:
+  supported: unknown
+request_id_tracing:
+  client_supplied: true
+  field: requestId
+  note: >-
+    requestId doubles as the idempotency key and the client's correlation handle. The June
+    2021 release notes record a bug fix in which error messages "incorrectly referred to the
+    requestID as a transactionID" — confirming requestId is echoed in error payloads.
+  source: https://apiportal.eastwestbank.com/release-notes
+versioning:
+  style: dated platform releases with a numeric release id
+  current_release: Bridge Open Banking Release 1.001
+  current_release_date: '2021-06-18'
+  detail: changelog/east-west-bancorp-changelog.yml
+error_envelope:
+  format: unknown
+  problem_json: false
+  known_fields:
+  - requestId
+  known_statuses:
+  - 401
+  note: >-
+    No error reference is published anonymously. 401 is documented in the FAQ with four named
+    causes; the error payload is known to carry requestId. application/problem+json is not
+    claimed by the provider and is not asserted here.
+rate_limit_signaling:
+  headers: []
+  note: >-
+    No published limits and no documented response headers. See
+    rate-limits/east-west-bancorp-rate-limits.yml.
+cross_links:
+  authentication: authentication/east-west-bancorp-authentication.yml
+  changelog: changelog/east-west-bancorp-changelog.yml
+  lifecycle: lifecycle/east-west-bancorp-lifecycle.yml
+  rate_limits: rate-limits/east-west-bancorp-rate-limits.yml
+  sandbox: sandbox/east-west-bancorp-sandbox.yml
+  webhooks: asyncapi/east-west-bancorp-webhooks.yml

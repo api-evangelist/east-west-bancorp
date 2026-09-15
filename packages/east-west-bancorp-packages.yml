@@ -1,0 +1,26 @@
+generated: '2026-09-14'
+method: searched
+source: >-
+  registry.npmjs.org search, pypi.org, api.github.com repository search, and the Bridge Open
+  Banking developer portal (how-it-works, FAQs, support, sitemap route list)
+note: >-
+  NO FIRST-PARTY CLIENT LIBRARY EXISTS. Searched npm ("eastwestbank", "east west bank",
+  "bridgeopenbanking" — zero first-party hits), PyPI (pypi.org/pypi/eastwestbank/json returns
+  404), and GitHub repository search (7 results, none owned by East West Bank; the
+  github.com/eastwestbank organisation has no public SDK repositories). The provider's own
+  onboarding path confirms it: "The reference documentation for each API product includes a
+  short series of commands that will quickly get you to your first API call. Just copy,
+  paste, and plug in the appropriate credentials." — curl-and-credentials, not a packaged
+  SDK. No SDKs pointer is emitted in apis.yml, because there is nothing to point at.
+package_count: 0
+packages: []
+searched_registries:
+- registry: npm
+  endpoint: https://registry.npmjs.org/-/v1/search
+  result: no first-party package
+- registry: pypi
+  endpoint: https://pypi.org/pypi/eastwestbank/json
+  result: 404
+- registry: github
+  endpoint: https://api.github.com/search/repositories
+  result: no first-party repository
