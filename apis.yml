@@ -29,12 +29,12 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/east-west-
 tags:
   - Banking
   - Financial-Services
-  - Commercial-Banking
-  - Treasury-Management
-  - Open-Banking
+  - Commercial Banking
+  - Treasury Management
+  - Open Banking
   - Payments
   - Cross-Border
-  - United-States
+  - United States
 tags_raw:
   - Banking
   - Financial Services
@@ -68,7 +68,7 @@ apis:
     tags:
       - Banking
       - Financial-Services
-      - Accounts
+      - Account
       - Balances
       - Payments
       - Transfers
