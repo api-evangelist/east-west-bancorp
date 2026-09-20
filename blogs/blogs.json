@@ -1,0 +1,14 @@
+{
+  "repo": "east-west-bancorp",
+  "feeds": [
+    {
+      "source": "https://apiportal.eastwestbank.com/privacy-policy",
+      "feed_url": "https://apiportal.eastwestbank.com/privacy-policy",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-09-19T20:17:39Z"
+}
