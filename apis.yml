@@ -28,7 +28,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/east-west-bancorp.png
 tags:
   - Banking
-  - Financial-Services
+  - Financial Services
   - Commercial Banking
   - Treasury Management
   - Open Banking
@@ -44,6 +44,7 @@ tags_raw:
   - Payments
   - Cross-Border
   - United States
+  - Financial-Services
 description: >-
   East West Bancorp, Inc. (NASDAQ: EWBC) is the Pasadena, California bank holding company for
   East West Bank, a California state-chartered commercial bank and Member FDIC institution
@@ -67,7 +68,7 @@ apis:
     name: East West Bank Bridge Open Banking API
     tags:
       - Banking
-      - Financial-Services
+      - Financial Services
       - Account
       - Balances
       - Payments
@@ -79,6 +80,7 @@ apis:
       - Balances
       - Payments
       - Transfers
+      - Financial-Services
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.eastwestbank.com
     humanURL: https://apiportal.eastwestbank.com/
