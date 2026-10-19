@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/east-west-bancorp/integrations
 - https://n8n.io/integrations/east-west-bancorp/
@@ -7,10 +7,41 @@ source:
 - https://monid.ai/tools/east-west-bancorp
 checked:
 - https://composio.dev/toolkits/east-west-bancorp
+- https://eservices.mas.gov.sg/fid
 - https://monid.ai/tools/east-west-bancorp
 - https://n8n.io/integrations/east-west-bancorp/
+- https://www.bi.go.id/id/layanan/informasi-perizinan/sistem-pembayaran/default.aspx
+- https://www.bnm.gov.my/list-of-regulatees
+- https://www.ojk.go.id/id/kanal/iknb/data-dan-statistik/direktori/fintech/Default.aspx
 - https://zapier.com/apps/east-west-bancorp/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: MAS Financial Institutions Directory
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://eservices.mas.gov.sg/fid
+  category: open finance (Singapore)
+  contract_reference:
+    register: MAS Financial Institutions Directory
+    spec_file: null
+    standard: MAS licensing (Banking Act / Payment Services Act, Singapore)
+    role: licensed-participant
+    registrations:
+    - registered_name: EAST WEST BANK
+      licences:
+      - Representative Office (Banking)
+      matched_domain: eastwestbank.com
+      matched_by: domain+verified
+      evidence: https://eservices.mas.gov.sg/fid/institution/detail/410234-EAST-WEST-BANK
+      register_id: 410234-EAST-WEST-BANK
+    signal_note: 'participation only: a regulator licence; no API conformance is published by this register'
+    detected_by: sweep-gulf-asean-open-finance.py
+    detected: '2026-10-18'
+  detected_by: sweep-gulf-asean-open-finance.py
+  first_seen: '2026-10-18'
 templates: []
